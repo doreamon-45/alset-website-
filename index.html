@@ -1,237 +1,376 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alset Academy | Vijayawada</title>
+<!DOCTYPE html>    
+<html lang="en">    
+<head>    
+<meta charset="UTF-8">    
+<title>Alset Academy</title>    
+<meta name="viewport" content="width=device-width, initial-scale=1.0">    <style>    
+body{    
+  margin:0;    
+  font-family:Arial;    
+  background:url("https://images.unsplash.com/photo-1523240795612-9a054b0db644");    
+  background-size:cover;    
+  background-position:center;    
+  background-attachment:fixed;    
+}    
+    
+.overlay{    
+  background:rgba(0,0,0,0.65);    
+  min-height:100vh;    
+  color:white;    
+}    
+    
+/* HEADER */    
+.header{    
+  text-align:center;    
+  padding:25px;    
+  font-size:32px;    
+  color:gold;    
+  font-weight:bold;    
+}    
+    
+/* HERO */    
+.hero{    
+  text-align:center;    
+  padding:20px;    
+}    
+    
+/* TRUST */    
+.trust{    
+  text-align:center;    
+  padding:20px;    
+  margin:20px;    
+  background:rgba(255,255,255,0.1);    
+  border-radius:10px;    
+}    
+    
+.box{    
+  display:inline-block;    
+  margin:10px;    
+  padding:15px;    
+  width:200px;    
+  background:#1e3a8a;    
+  color:gold;    
+  border-radius:10px;    
+}    
+    
+/* FORM */    
+.section{    
+  text-align:center;    
+  padding:20px;    
+}    
+    
+input{    
+  width:90%;    
+  max-width:280px;    
+  padding:10px;    
+  margin:8px;    
+  border:none;    
+  border-radius:6px;    
+}    
+    
+button{    
+  padding:10px 18px;    
+  background:gold;    
+  border:none;    
+  cursor:pointer;    
+  font-weight:bold;    
+}    
+    
+/* PANEL */    
+.panel{    
+  display:none;    
+  background:white;    
+  color:black;    
+  padding:15px;    
+}    
+    
+table{    
+  width:100%;    
+  border-collapse:collapse;    
+}    
+    
+td,th{    
+  border:1px solid #ccc;    
+  padding:10px;    
+}    
+    
+th{    
+  background:#1e3a8a;    
+  color:gold;    
+}    
+body {    
+  font-family: Arial;    
+}    
+    
+.panel {    
+  padding: 20px;    
+  border-radius: 10px;    
+}    
+    
+button {    
+  margin: 5px;    
+  padding: 8px 12px;    
+  border-radius: 6px;    
+  background: gold;    
+  border: none;    
+  cursor: pointer;    
+}    
+    
+button:hover {    
+  opacity: 0.8;    
+}    
+    
+table {    
+  background: white;    
+  color: black;    
+}    
+</style>    </head>    <body>    <div class="overlay">    <div class="header">Alset Academy</div>    <div class="hero">    
+  <h2>Welcome Students 👋</h2>    
+  <p>Learn Smart • Build Strong Basics • Achieve Success</p>    
+</div>    <div class="trust">    
+  <h2>Why Parents Trust Us</h2>      <div class="box">Strong Basics</div>    
+  <div class="box">Expert Teachers</div>    
+  <div class="box">Personal Attention</div>      <p style="color:#ddd;margin-top:10px;">    
+    We focus on concept clarity and student success.    
+  </p>    
+</div>    <!-- ENQUIRY -->    <div class="section">    
+  <h2>Admission Enquiry</h2>    <input id="name" placeholder="Student Name"><br>
+<input id="phone" placeholder="Phone Number"><br>
+<input id="class" placeholder="Class"><br>
 
-  <style>
-    :root {
-      --navy: #0b1c2d;
-      --gold: #d4af37;
-      --light: #f5f7fa;
-    }
+<button onclick="submitData()">Submit</button>
 
-    * {
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
+  <p id="msg"></p>    
+</div>    <!-- LOGIN -->     <div class="section">
+  <input type="email" id="email" placeholder="Email"><br>
+  <input type="password" id="password" placeholder="Password"><br>
+  <button type="button" onclick="togglePassword()">Show/Hide</button>
+  <button onclick="login()">Login</button>
+  <p id="loginMsg"></p>
+</div> <!-- ===================== ADMIN PANEL START ===================== -->    <div class="panel" id="panel">      <!-- TITLE -->      <h2>Institute Management Panel</h2>    <button onclick="logout()">Logout</button>
 
-    body {
-      margin: 0;
-      background: var(--light);
-      color: #333;
-    }
-
-    header {
-      background: linear-gradient(135deg, var(--navy), #102a43);
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 32px;
-      color: var(--gold);
-    }
-
-    header p {
-      font-size: 16px;
-      margin-top: 10px;
-    }
-
-    section {
-      padding: 40px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    }
-
-    .card h3 {
-      color: var(--navy);
-      margin-top: 0;
-    }
-
-    .highlight {
-      color: var(--gold);
-      font-weight: 600;
-    }
-
-    .study-img {
-      background: url('https://images.unsplash.com/photo-1588072432836-e10032774350');
-      background-size: cover;
-      background-position: center;
-      height: 260px;
-      border-radius: 15px;
-      margin-top: 20px;
-    }
-
-    form input, form select, form button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-    }
-
-    form button {
-      background: var(--navy);
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin-top: 15px;
-    }
-
-    form button:hover {
-      background: var(--gold);
-      color: black;
-    }
-
-    .success {
-      display: none;
-      margin-top: 15px;
-      color: green;
-      font-weight: 600;
-    }
-
-    footer {
-      background: var(--navy);
-      color: white;
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-    }
-
-    /* Admin section */
-    .admin {
-      background: #eef2f7;
-      border-left: 6px solid var(--gold);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-    }
-
-    table th, table td {
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
-      text-align: left;
-    }
-
-    table th {
-      background: var(--navy);
-      color: white;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 24px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-<header>
-  <h1>ALSET ACADEMY</h1>
-  <p>Building Strong Foundations for Classes 6 – 10</p>
-</header>
-
-<section>
-  <h2>Why Parents Trust <span class="highlight">Alset Academy</span></h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Concept-Based Teaching</h3>
-      <p>We focus on deep understanding, not rote learning.</p>
-    </div>
-    <div class="card">
-      <h3>Experienced Faculty</h3>
-      <p>Dedicated teachers with proven academic results.</p>
-    </div>
-    <div class="card">
-      <h3>Personal Attention</h3>
-      <p>Limited students per batch for better outcomes.</p>
-    </div>
-  </div>
-
-  <div class="study-img"></div>
-</section>
-
-<section>
-  <h2>Admission Enquiry</h2>
-  <div class="card">
-    <form onsubmit="submitForm(event)">
-      <input type="text" placeholder="Student Name" required>
-      <input type="tel" placeholder="Parent Contact Number" required>
-      <select required>
-        <option value="">Select Class</option>
-        <option>Class 6</option>
-        <option>Class 7</option>
-        <option>Class 8</option>
-        <option>Class 9</option>
-        <option>Class 10</option>
-      </select>
-      <button type="submit">Submit Enquiry</button>
-      <div class="success" id="successMsg">
-        ✅ Enquiry successfully sent to institute management.
-      </div>
-    </form>
-  </div>
-</section>
-
-<section class="admin">
-  <h2>Institute Management Panel</h2>
-  <p>
-    This section is designed to manage student enquiries and academic records.
-    Advanced features like login access, enquiry tracking, and database storage
-    can be enabled as required.
-  </p>
-
-  <div class="card">
-    <table>
-      <thead>
-        <tr>
-          <th>Student Name</th>
-          <th>Contact</th>
-          <th>Class</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td colspan="3">Waiting for new enquiries...</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<footer>
-  © 2026 Alset Academy | Bhavanipuram, Vijayawada
-</footer>
-
-<script>
-  function submitForm(e) {
-    e.preventDefault();
-    document.getElementById('successMsg').style.display = 'block';
-  }
-</script>
-
-</body>
+  <!-- SEARCH BOX -->      <input id="search" placeholder="Search name or phone" onkeyup="loadData()">      <!-- TABLE START -->      <div style="display:flex; gap:15px; margin-bottom:10px; flex-wrap:wrap; color:white;">    
+  <div>Total Leads: <span id="total">0</span></div>    
+  <div>New: <span id="newCount">0</span></div>    
+  <div>Contacted: <span id="contactedCount">0</span></div>    
+  <div>Joined: <span id="joinedCount">0</span></div>    
+</div>    
+<table>      <thead>    
+    <tr>    
+      <th>Name</th>    
+      <th>Phone</th>    
+      <th>Class</th>    
+      <th>Status</th>    
+    </tr>    
+  </thead>      <tbody id="data"></tbody>    </table>    
+  <!-- TABLE END -->    </div>    
+<!-- ===================== ADMIN PANEL END ===================== -->    <!-- FIREBASE -->    <script type="module">    
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";    
+import {     
+  getFirestore,    
+  collection,    
+  addDoc,    
+  getDocs,    
+  deleteDoc,    
+  doc,    
+  updateDoc    
+} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";    
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";    
+    
+const firebaseConfig = {    
+  apiKey: "AIzaSyBwk1FjrwBSKGiQF2N8UWq2C0jjr5wzdrM",    
+  authDomain: "alset-tutions.firebaseapp.com",    
+  projectId: "alset-tutions",    
+  storageBucket: "alset-tutions.firebasestorage.app",    
+  messagingSenderId: "224689579578",    
+  appId: "1:224689579578:web:2451410ab5f8a487d17703"    
+};    
+    
+const app = initializeApp(firebaseConfig);    
+const db = getFirestore(app);    
+const auth = getAuth(app);    
+    
+/* SUBMIT */    
+window.submitData = async function () {    
+  const name = document.getElementById("name").value.trim();    
+  const phone = document.getElementById("phone").value.trim();    
+  const cls = document.getElementById("class").value.trim();    
+    
+  if (!name || !phone || !cls) {    
+    alert("Fill all fields");    
+    return;    
+  }    
+    
+  if (!/^[0-9]{10}$/.test(phone)) {    
+    alert("Enter valid phone");    
+    return;    
+  }    
+    
+  await addDoc(collection(db, "enquiries"), {    
+    name,    
+    phone,    
+    class: cls,    
+    status: "new",    
+    createdAt: Date.now()    
+  });    
+    
+  const msg = document.getElementById("msg");    
+msg.innerText = "Submitted Successfully 🎉";    
+    
+setTimeout(() => {    
+  msg.innerText = "";    
+}, 3000);    
+  document.getElementById("name").value = "";    
+  document.getElementById("phone").value = "";    
+  document.getElementById("class").value = "";    
+};    
+    
+/* LOGIN */    
+  window.login = function () {    
+  const email = document.getElementById("email").value.trim();    
+  const password = document.getElementById("password").value.trim();    
+  const loginMsg = document.getElementById("loginMsg");    
+    
+  if (!email || !password) {    
+    loginMsg.innerText = "Email & password required";    
+    return;    
+  }    
+    
+  loginMsg.innerText = "Logging in...";    
+    
+  signInWithEmailAndPassword(auth, email, password)    
+    .then(() => {    
+  loginMsg.innerText = "Login success";    
+    
+  // CLEAR INPUTS AFTER LOGIN    
+  document.getElementById("email").value = "";    
+  document.getElementById("password").value = "";    
+})    
+    .catch(err => {    
+      loginMsg.innerText = err.message;    
+    });    
+};    
+    
+window.togglePassword = function () {    
+  const pass = document.getElementById("password");    
+    
+  if (pass.type === "password") {    
+    pass.type = "text";    
+  } else {    
+    pass.type = "password";    
+  }    
+};    
+    
+    
+/* LOAD DATA */    
+    
+async function loadData() {    
+  try {    
+    console.log("Loading data...");    
+    
+    const search = document.getElementById("search")?.value.toLowerCase() || "";    
+    const tbody = document.getElementById("data");    
+    tbody.innerHTML = "";    
+    
+    let total = 0;    
+    let newC = 0;    
+    let contacted = 0;    
+    let joined = 0;    
+    
+    const snap = await getDocs(collection(db, "enquiries"));    
+    console.log("Documents found:", snap.size);    
+    
+    snap.forEach(d => {    
+      const s = d.data();    
+      const status = s.status || "new";    
+    
+      total++;    
+      if (status === "new") newC++;    
+      if (status === "contacted") contacted++;    
+      if (status === "joined") joined++;    
+    
+      const name = (s.name || "").toLowerCase();    
+const phone = (s.phone || "");    
+    
+const match =    
+  name.includes(search) ||    
+  phone.includes(search);    
+    
+      if (match) {    
+        tbody.innerHTML += `    
+          <tr>    
+            <td>${s.name}</td>    
+            <td>${s.phone}</td>    
+            <td>${s.class}</td>    
+            <td>    
+              <select onchange="updateStatus('${d.id}', this.value)">    
+                <option ${status === "new" ? "selected" : ""}>new</option>    
+                <option ${status === "contacted" ? "selected" : ""}>contacted</option>    
+                <option ${status === "joined" ? "selected" : ""}>joined</option>    
+              </select>    
+            </td>    
+            <td>    
+              <button onclick="deleteStudent('${d.id}')">Delete</button>    
+            </td>    
+          </tr>`;    
+      }    
+    });    
+    
+    document.getElementById("total").innerText = total;    
+    document.getElementById("newCount").innerText = newC;    
+    document.getElementById("contactedCount").innerText = contacted;    
+    document.getElementById("joinedCount").innerText = joined;    
+    
+  } catch (err) {    
+    console.error("LOAD DATA ERROR:", err.message);    
+    alert(err.message);    
+  }    
+}    
+    
+/* DELETE */    
+window.deleteStudent = async function (id) {    
+  await deleteDoc(doc(db, "enquiries", id));    
+  loadData();    
+};    
+window.updateStatus = async function (id, status) {    
+  const ref = doc(db, "enquiries", id);    
+  await updateDoc(ref, { status });    
+};    
+    
+/* AUTH */    
+  onAuthStateChanged(auth, user => {    
+  const panel = document.getElementById("panel");    
+    
+  if (user) {    
+    panel.style.display = "block";    
+    loadData();    
+  } else {    
+    panel.style.display = "none";    
+  }    
+});    
+    
+/* LOGOUT */    
+window.logout = function () {    
+  signOut(auth)    
+    .then(() => {    
+      document.getElementById("panel").style.display = "none";    
+      const msg = document.getElementById("loginMsg");    
+      msg.innerText = "Logged out";    
+      setTimeout(() => msg.innerText = "", 2000);    
+    })    
+    .catch(err => alert(err.message));    
+};    
+    
+    
+</script>    <div style="    
+  text-align:center;    
+  padding:25px;    
+  color:white;    
+  font-size:18px;    
+  font-weight:bold;    
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);    
+">    
+  Staff Login    
+</div>    
+</body>    
 </html>
